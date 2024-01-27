@@ -1,0 +1,24 @@
+<div class="container-nav">
+    <mat-card>
+            <mat-card-content>
+            <h1> {{panelName}} </h1>
+        </mat-card-content>
+    </mat-card>
+    <mat-nav-list>
+        @for (item of navItems; track navItems) {
+        <a mat-list-item routerLink="/{{item.link}}" routerLinkActive="active-link">
+            
+                <mat-icon>{{item.icon}}</mat-icon>
+
+           
+          
+            {{item.value}}
+        
+        </a>
+        }
+    </mat-nav-list>    
+    <div class ="spacer"></div>
+    <div class="image">
+        <img alt="Hand taking a Book" src="./assets/hand-taking-book.jpg">
+    </div>
+</div>
