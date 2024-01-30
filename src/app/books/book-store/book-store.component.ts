@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Book, BooksByCategory } from '../../models/models';
 import { ApiService } from '../../shared/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { booksList, booksToDisplayList } from '../../models/listBooks';
 
 @Component({
   selector: 'app-book-store',
@@ -9,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './book-store.component.scss'
 })
 export class BookStoreComponent {
-  books : Book[]=[];
+  books : Book[]= booksList;
 
   displayedColumns: string[] = [
     'id',
@@ -20,27 +21,11 @@ export class BookStoreComponent {
     'order',
   ];
 
-  booksToDisplay: BooksByCategory[] = [
-    {
-      
-      code: 'aze',
-      label: 'info',
-      books: [
-        {
-          id: 1,
-          title: 'T',
-          author: 'A',
-          price: 100,
-          ordered: false,
-          category: {code:'aze', label:'info' },
-        },
-      ],
-    },
-  ];
+  booksToDisplay: BooksByCategory[] = booksToDisplayList;
 
 
   constructor(private apiService: ApiService, private snackBar: MatSnackBar) {
-    apiService.getBooks().subscribe({
+   /* apiService.getBooks().subscribe({
       next: (res: Book[]) => {
         console.log(res);
         this.books = [];
@@ -48,7 +33,8 @@ export class BookStoreComponent {
 
         this.updateList();
       },
-    });
+    });*/
+    this.updateList();
   }
 
 
@@ -58,7 +44,7 @@ export class BookStoreComponent {
       let categoryExists = false;
       let categoryBook: BooksByCategory | null;
       for (let bookToDisplay of this.booksToDisplay) {
-        if (bookToDisplay.code == book.category.code) {
+        if (bookToDisplay.bookCategoryId == book.bookCategoryId) {
           categoryExists = true;
           categoryBook = bookToDisplay;
         }
@@ -68,13 +54,15 @@ export class BookStoreComponent {
         categoryBook!.books.push(book);
       } else {
         this.booksToDisplay.push({
-          code: book.category.code,
-          label: book.category.label,
+          bookCategoryId: book.bookCategoryId,
+          category: book.bookCategory.category,
+          subCategory: book.bookCategory.subCategory,
           books: [book],
         });
       }
     }
   }
+
 
   searchBooks(value: string) {
     this.updateList();

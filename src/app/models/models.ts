@@ -22,10 +22,10 @@ export interface User {
   }
 
   export interface BookCategory {
-    code: string;
-    label: string;
-    
-    }
+    id: number;
+    category: string;
+    subCategory: string;
+  }
   
   export interface Book {
     id: number;
@@ -33,14 +33,17 @@ export interface User {
     author: string;
     price: number;
     ordered: boolean;
-    category: BookCategory;
+    bookCategoryId: number;
+    bookCategory: BookCategory;
   }
-
+  
   export interface BooksByCategory {
-    code: string;
-    label: string;
+    bookCategoryId: number;
+    category: string;
+    subCategory: string;
     books: Book[];
   }
+  
   
   export interface Order {
     id: number;
@@ -52,6 +55,10 @@ export interface User {
     returned: boolean;
     returnDate: string | null;
     finePaid: number;
+  }
+
+  export interface AuthenticationResponse {
+    jwt : string;
   }
 
   

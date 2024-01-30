@@ -34,7 +34,16 @@ export class RegisterComponent {
         mobileNumber: this.registerForm.get('mobileNumber')?.value,
         password: this.registerForm.get('password')?.value,
       };
-      //this.apiService.register(user).pipe(catchError(this.handleError));
+
+      this.snackBar.open("thank you for registring", 'OK');
+
+      this.apiService.register(user).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.snackBar.open(res, 'OK');
+        },
+      });
+      
       
 
     
