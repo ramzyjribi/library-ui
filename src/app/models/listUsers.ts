@@ -7,9 +7,9 @@ export const usersList : User[] = [
     id: 1,
     firstName: "Ramzi",
     lastName: "jribi",
-    email: "ramzynet77@gmail.com",
+    email: "ramzi@gmail.com",
     mobileNumber: "",
-    password: "passagey",
+    password: "ramzi",
     userType: UserType.ADMIN,
     accountStatus: AccountStatus.ACTIVE,
     createdOn: "" 

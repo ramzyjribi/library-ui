@@ -85,7 +85,7 @@ export class BookStoreComponent {
   orderBook(book: Book) {
    /* this.apiService.orderBook(book).subscribe({
       next: (res) => {
-        if (res === 'ordered') {
+        if (res === 'ordered') {*/
           book.ordered = true;
           let today = new Date();
           let returnDate = new Date();
@@ -97,7 +97,7 @@ export class BookStoreComponent {
               returnDate.toDateString(),
             'OK'
           );
-        } else {
+          /*} else {
           this.snackBar.open(
             'You already have 3 orders pending to return.',
             'OK'
